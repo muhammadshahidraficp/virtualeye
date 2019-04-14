@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "bluetooth2";
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
-    TextView txtArduino;
     Handler h;
     Button startButton, stopButton, clearButton;
     TextView distText, navText, calibText;
@@ -191,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
         mPlayer.start();
     }
 
+
     public void launchGesture(){
         if(mPlayer.isLooping()){
             mPlayer.pause();
@@ -252,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickClear(View view) {
+        calibText.setText("");
         distText.setText("");
         navText.setText("");
     }
