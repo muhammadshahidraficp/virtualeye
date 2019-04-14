@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                         if (endOfLineIndex > 0) {                                            // if end-of-line,
                             String sbprint = sb.substring(0, endOfLineIndex);               // extract string
                             sb.delete(0, sb.length());                                      // and clear
-                            txtArduino.setText("Data from Arduino: " + sbprint);            // update TextView
+                            calibText.setText("Data from Arduino: " + sbprint);            // update TextView
                             startButton.setEnabled(true);
                             stopButton.setEnabled(true);
                         }
