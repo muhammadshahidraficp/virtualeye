@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
     TextToSpeech speech;
     ImageView swipeImage;
     MediaPlayer mPlayer;
+    MediaPlayer gPlayer;
+    MediaPlayer lPlayer;
+    MediaPlayer rPlayer;
+    MediaPlayer tPlayer;
 
     final int RECIEVE_MESSAGE = 1;        // Status  for Handler
     private BluetoothAdapter btAdapter = null;
@@ -77,7 +81,10 @@ public class MainActivity extends AppCompatActivity {
         calibText = (TextView) findViewById(R.id.calibrate_text);
         swipeImage = (ImageView) findViewById(R.id.swipe_image);
         mPlayer = MediaPlayer.create(MainActivity.this, R.raw.start_instruction);
-
+        lPlayer = MediaPlayer.create(MainActivity.this, R.raw.moveright);
+        rPlayer = MediaPlayer.create(MainActivity.this, R.raw.moveleft);
+        gPlayer = MediaPlayer.create(MainActivity.this, R.raw.goahead);
+        tPlayer = MediaPlayer.create(MainActivity.this, R.raw.turnaround);
         readInstructions();
 
         //Speech initialization
@@ -152,13 +159,25 @@ public class MainActivity extends AppCompatActivity {
                             sb.delete(0, sb.length());                                      // and clear
                             calibText.setText("Data from Arduino: " + sbprint);            // update TextView
                             switch(sbprint){
+                                case "B":
+                                    readturn();
+                                    //String speakText = getResources().getString(R.string.obstacle_right);
+                                    //speech.speak(speakText, TextToSpeech.QUEUE_FLUSH, null, null);
+                                    break;
+                                case "A":
+                                    goahead();
+                                    //String speakText = getResources().getString(R.string.obstacle_right);
+                                    //speech.speak(speakText, TextToSpeech.QUEUE_FLUSH, null, null);
+                                    break;
                                 case "R":
                                     var.vibrate(500);
-                                    String speakText = getResources().getString(R.string.obstacle_right);
-                                    speech.speak(speakText, TextToSpeech.QUEUE_FLUSH, null, null);
+                                    readright();
+                                    //String speakText = getResources().getString(R.string.obstacle_right);
+                                    //speech.speak(speakText, TextToSpeech.QUEUE_FLUSH, null, null);
                                     break;
                                 case "L":
                                     var.vibrate(1000);
+                                    readLeft();
                                     //String speakText = getResources().getString(R.string.obstacle_left);
                                     //speech.speak(speakText, TextToSpeech.QUEUE_FLUSH, null, null);
                                     //break;
@@ -201,6 +220,34 @@ public class MainActivity extends AppCompatActivity {
             mPlayer.pause();
         }
         mPlayer.start();
+    }
+
+    public void readLeft(){
+        if(lPlayer.isPlaying()){
+            lPlayer.pause();
+        }
+        lPlayer.start();
+    }
+
+    public void goahead(){
+        if(gPlayer.isPlaying()){
+            gPlayer.pause();
+        }
+        gPlayer.start();
+    }
+
+    public void readright(){
+        if(rPlayer.isPlaying()){
+            rPlayer.pause();
+        }
+        rPlayer.start();
+    }
+
+    public void readturn(){
+        if(tPlayer.isPlaying()){
+            tPlayer.pause();
+        }
+        tPlayer.start();
     }
 
 

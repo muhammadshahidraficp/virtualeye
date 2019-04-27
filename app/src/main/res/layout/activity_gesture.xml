@@ -11,8 +11,9 @@
         android:id="@+id/Gestures"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/background"
         android:text="@string/gesture"
-        android:textSize="15sp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textSize="15sp" />
 
 </android.gesture.GestureOverlayView>
