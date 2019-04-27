@@ -151,6 +151,19 @@ public class MainActivity extends AppCompatActivity {
                             String sbprint = sb.substring(0, endOfLineIndex);               // extract string
                             sb.delete(0, sb.length());                                      // and clear
                             calibText.setText("Data from Arduino: " + sbprint);            // update TextView
+                            switch(sbprint){
+                                case "R":
+                                    var.vibrate(500);
+                                    String speakText = getResources().getString(R.string.obstacle_right);
+                                    speech.speak(speakText, TextToSpeech.QUEUE_FLUSH, null, null);
+                                    break;
+                                case "L":
+                                    var.vibrate(1000);
+                                    //String speakText = getResources().getString(R.string.obstacle_left);
+                                    //speech.speak(speakText, TextToSpeech.QUEUE_FLUSH, null, null);
+                                    //break;
+
+                            }
                             startButton.setEnabled(true);
                             stopButton.setEnabled(true);
                         }
