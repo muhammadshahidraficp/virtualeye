@@ -108,17 +108,19 @@ void loop() {
   }
   //==============================================
   if (front) {
+    Serial.print("F");
+    mySerial.print("F");
     if(left&&right){
       Serial.print("B");
-      mySerial.print("A");
+      mySerial.print("B");
       }
     else if(left){
       Serial.print("L");
-      mySerial.print("A");
+      mySerial.print("L");
       }
     else if(right){
       Serial.print("R");
-      mySerial.print("A");
+      mySerial.print("R");
       }    
   } 
   else {

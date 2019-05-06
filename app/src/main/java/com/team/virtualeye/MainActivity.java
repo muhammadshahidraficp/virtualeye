@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer lPlayer;
     MediaPlayer rPlayer;
     MediaPlayer tPlayer;
+    MediaPlayer fPlayer;
 
     final int RECIEVE_MESSAGE = 1;        // Status  for Handler
     private BluetoothAdapter btAdapter = null;
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         rPlayer = MediaPlayer.create(MainActivity.this, R.raw.moveleft);
         gPlayer = MediaPlayer.create(MainActivity.this, R.raw.goahead);
         tPlayer = MediaPlayer.create(MainActivity.this, R.raw.turnaround);
+        fPlayer = MediaPlayer.create(MainActivity.this, R.raw.obstaclefront);
         readInstructions();
 
         //Speech initialization
@@ -170,8 +172,14 @@ public class MainActivity extends AppCompatActivity {
                                     //speech.speak(speakText, TextToSpeech.QUEUE_FLUSH, null, null);
                                     break;
                                 case "R":
-                                    var.vibrate(500);
+                                    var.vibrate(250);
                                     readright();
+                                    //String speakText = getResources().getString(R.string.obstacle_right);
+                                    //speech.speak(speakText, TextToSpeech.QUEUE_FLUSH, null, null);
+                                    break;
+                                case "F":
+                                    var.vibrate(500);
+                                    readfront();
                                     //String speakText = getResources().getString(R.string.obstacle_right);
                                     //speech.speak(speakText, TextToSpeech.QUEUE_FLUSH, null, null);
                                     break;
@@ -250,6 +258,12 @@ public class MainActivity extends AppCompatActivity {
         tPlayer.start();
     }
 
+    public void readfront(){
+        if(fPlayer.isPlaying()){
+            fPlayer.pause();
+        }
+        fPlayer.start();
+    }
 
     public void launchGesture(){
         if(mPlayer.isLooping()){
